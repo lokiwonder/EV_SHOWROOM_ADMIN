@@ -24,19 +24,15 @@ export const signin = async (id, password) => {
       expires.setSeconds(expires.getSeconds() + res.data.expired_time);
 
       cookies.set("access_token", res.data.access_token, {
-        path: "/",
         expires,
       });
       cookies.set("dealerName", res.data.dealer_name, {
-        path: "/",
         expires,
       });
       cookies.set("name", name, {
-        path: "/",
         expires,
       });
       cookies.set("country", country, {
-        path: "/",
         expires,
       });
 
