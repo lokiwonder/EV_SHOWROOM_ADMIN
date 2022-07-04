@@ -21,26 +21,22 @@ export const signin = async (id, password) => {
       const { name, country } = res.data;
 
       const expires = new Date();
-
       expires.setSeconds(expires.getSeconds() + res.data.expired_time);
+
       cookies.set("access_token", res.data.access_token, {
         path: "/",
-        secure: true,
         expires,
       });
       cookies.set("dealerName", res.data.dealer_name, {
         path: "/",
-        secure: true,
         expires,
       });
       cookies.set("name", name, {
         path: "/",
-        secure: true,
         expires,
       });
       cookies.set("country", country, {
         path: "/",
-        secure: true,
         expires,
       });
 
@@ -130,8 +126,6 @@ export const getTranslations = async (country, appType, group, language) => {
     language,
   };
 
-  console.log(`language: ${language}`);
-
   await axios
     .post(DISPLAY_TRANSLATION_URL, body, {
       headers: { Authorization: `Bearer ${accessToken}` },
@@ -172,7 +166,6 @@ export const getTranslationItem = async (dto) => {
       headers: { Authorization: `Bearer ${accessToken}` },
     })
     .then((res) => {
-      console.log(res);
       result = {
         result: true,
         originalItem: res.data.original_item,
