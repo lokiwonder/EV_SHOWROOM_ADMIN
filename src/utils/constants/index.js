@@ -1,15 +1,15 @@
-export const SIGNIN_URL = "http://localhost:4000/apis/auth/loginAdmin";
+export const SIGNIN_URL = "http://51.116.98.90:4000/apis/auth/loginAdmin";
 export const ADMIN_DISPLAY_SETUP_URL =
-  "http://localhost:4000/apis/admin/displaySetup";
-export const GET_IMAGE_URL = "http://localhost:4000/apis/file/getImage/";
+  "http://51.116.98.90:4000/apis/admin/displaySetup";
+export const GET_IMAGE_URL = "http://51.116.98.90:4000/apis/file/getImage/";
 export const SAVE_ELECTRIFIED_SETTING_URL =
-  "http://localhost:4000/apis/admin/settingSetup";
+  "http://51.116.98.90:4000/apis/admin/settingSetup";
 export const DISPLAY_TRANSLATION_URL =
-  "http://localhost:4000/apis/admin/displayTranslation";
+  "http://51.116.98.90:4000/apis/admin/displayTranslation";
 export const GET_TRANSLATION_ITEM_URL =
-  "http://localhost:4000/apis/admin/displayTranslationItem";
+  "http://51.116.98.90:4000/apis/admin/displayTranslationItem";
 export const EDIT_TRANSLATION_ITEM_URL =
-  "http://localhost:4000/apis/admin/editTranslation";
+  "http://51.116.98.90:4000/apis/admin/editTranslation";
 
 export const AUSTRIA = { code: "AT", name: "Österreich", enName: "Austria" };
 export const BELGIUM = {
