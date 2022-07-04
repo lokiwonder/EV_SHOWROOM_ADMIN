@@ -1,20 +1,4 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect } from "react";
-
 // react-router components
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -52,7 +36,11 @@ import MDTypography from "components/MDTypography";
 
 import useDealerStore from "utils/stores/dealer.store";
 
-import { getJWTCookie, getDealerCookie } from "utils/functions/cookie";
+import {
+  getJWTCookie,
+  getDealerCookie,
+  removeAllCookie,
+} from "utils/functions/cookie";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const { dealer } = useDealerStore();
@@ -62,6 +50,13 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const route = useLocation().pathname.split("/").slice(1);
 
   const navigate = useNavigate();
+
+  const onSignoutHandler = () => {
+    if (window.confirm("Are you sure you want to sign out?")) {
+      removeAllCookie();
+      navigate("../admin");
+    }
+  };
 
   useEffect(() => {
     console.log(dealer);
@@ -153,6 +148,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
               color="hyundaiPrimary"
               lineHeight={1}
               sx={{ cursor: "pointer", mx: 3 }}
+              onClick={() => onSignoutHandler()}
             >
               {dealer.dealerName}
             </MDTypography>
