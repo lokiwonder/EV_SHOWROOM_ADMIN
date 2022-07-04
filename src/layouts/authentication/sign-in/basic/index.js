@@ -43,7 +43,8 @@ function Basic() {
     } else {
       setDealer({ dealerName, name, country });
       setLoginFlag(true);
-      if (loginFlag) navigate("../admin/electrifiedSetting");
+      console.log(loginFlag);
+      navigate("../admin/electrifiedSetting");
     }
   };
 
