@@ -15,7 +15,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.png";
 import logo from "assets/images/hyundai_logo.png";
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // util
 // import { isValidPassword } from "utils/functions/validation";
@@ -43,6 +43,7 @@ function Basic() {
     } else {
       setDealer({ dealerName, name, country });
       setLoginFlag(true);
+      if (loginFlag) navigate("../admin/electrifiedSetting");
     }
   };
 
@@ -72,9 +73,9 @@ function Basic() {
     </MDTypography>
   );
 
-  useEffect(() => {
-    if (loginFlag) navigate("../admin/electrifiedSetting");
-  }, [loginFlag]);
+  // useEffect(() => {
+  // if (loginFlag) navigate("../admin/electrifiedSetting");
+  // }, [loginFlag]);
 
   return (
     <BasicLayout image={bgImage}>
