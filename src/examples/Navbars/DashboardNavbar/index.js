@@ -37,8 +37,8 @@ import MDTypography from "components/MDTypography";
 import useDealerStore from "utils/stores/dealer.store";
 
 import {
-  getJWTCookie,
-  getDealerCookie,
+  // getJWTCookie,
+  // getDealerCookie,
   removeAllCookie,
 } from "utils/functions/cookie";
 
@@ -61,8 +61,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
   useEffect(() => {
     console.log(dealer);
     // todo: cookie가 존재하지 않는다면 로그인 화면으로 이동
-    if (getJWTCookie === undefined || getDealerCookie === undefined)
-      navigate("../admin");
+    // if (getJWTCookie === undefined || getDealerCookie === undefined)
+    //   navigate("../admin");
 
     // Setting the navbar type
     if (fixedNavbar) {
