@@ -29,7 +29,7 @@ function Basic() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [alertFlag, setAlertFlag] = useState(false);
-  const [loginFlag, setLoginFlag] = useState(false);
+  // const [loginFlag, setLoginFlag] = useState(false);
 
   const { setDealer } = useDealerStore();
 
@@ -42,8 +42,6 @@ function Basic() {
       setAlertFlag(true);
     } else {
       setDealer({ dealerName, name, country });
-      setLoginFlag(true);
-      console.log(loginFlag);
       navigate("../admin/electrifiedSetting");
     }
   };

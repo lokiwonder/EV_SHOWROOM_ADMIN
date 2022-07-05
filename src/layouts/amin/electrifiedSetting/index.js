@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { displaySetup, saveEelctrifiedSettting } from "utils/functions/axios";
 import { GET_IMAGE_URL } from "utils/constants";
 import MDButton from "components/MDButton";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { getCountry } from "utils/functions/country";
 import { getCountryCookie } from "utils/functions/cookie";
 
@@ -29,7 +29,7 @@ function ElectrifiedSetting() {
   const [rerender, setRerender] = useState(false);
   const [countryInfo, setCountryInfo] = useState({});
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // function: //
   // description: //
@@ -65,9 +65,10 @@ function ElectrifiedSetting() {
         setElectrifiedAll(display.electrifiedAll);
         setDisplayableElectrifies(display.displayableElectrifies);
         setElectrifiedVersion(display.electrified_version);
-      } else {
-        navigate("../admin");
       }
+      // else {
+      //   navigate("../admin");
+      // }
     };
     const country = getCountry(getCountryCookie);
 
