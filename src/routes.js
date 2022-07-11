@@ -46,30 +46,30 @@ const routes = [
     key: "Download",
     icon: <Icon fontSize="medium">download</Icon>,
     collapse: [
-      {
-        name: "ELECTRIFED",
-        key: "ELECTRIFED",
-        route: "/admin/electrifiedDownload",
-        component: <PricingPage />,
-      },
-      {
-        name: "POWERTRAIN",
-        key: "POWERTRAIN",
-        route: "/admin/powertrainDownload",
-        component: <PricingPage />,
-      },
-      {
-        name: "CONNECTIVITY",
-        key: "CONNECTIVITY",
-        route: "/admin/connectivityDownload",
-        component: <PricingPage />,
-      },
-      {
-        name: "TOTAL",
-        key: "TOTAL",
-        route: "/admin/totalDownload",
-        component: <PricingPage />,
-      },
+      // {
+      //   name: "ELECTRIFED",
+      //   key: "ELECTRIFED",
+      //   route: "/admin/electrifiedDownload",
+      //   component: <PricingPage />,
+      // },
+      // {
+      //   name: "POWERTRAIN",
+      //   key: "POWERTRAIN",
+      //   route: "/admin/powertrainDownload",
+      //   component: <PricingPage />,
+      // },
+      // {
+      //   name: "CONNECTIVITY",
+      //   key: "CONNECTIVITY",
+      //   route: "/admin/connectivityDownload",
+      //   component: <PricingPage />,
+      // },
+      // {
+      //   name: "TOTAL",
+      //   key: "TOTAL",
+      //   route: "/admin/totalDownload",
+      //   component: <PricingPage />,
+      // },
     ],
   },
 ];
