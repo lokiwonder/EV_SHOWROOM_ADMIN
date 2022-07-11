@@ -1,6 +1,6 @@
 import ElectrifiedSetting from "layouts/amin/electrifiedSetting";
 import Translation from "layouts/amin/translation";
-import PricingPage from "layouts/pages/pricing-page";
+// import PricingPage from "layouts/pages/pricing-page";
 import SignIn from "layouts/authentication/sign-in/basic";
 
 // @mui icons
