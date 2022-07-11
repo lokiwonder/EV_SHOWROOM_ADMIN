@@ -44,7 +44,7 @@ const routes = [
     type: "collapse",
     name: "Download",
     key: "Download",
-    icon: <Icon fontSize="medium">dashboard</Icon>,
+    icon: <Icon fontSize="medium">download</Icon>,
     collapse: [
       {
         name: "ELECTRIFED",
@@ -67,7 +67,7 @@ const routes = [
       {
         name: "TOTAL",
         key: "TOTAL",
-        route: "/admin/total",
+        route: "/admin/totalDownload",
         component: <PricingPage />,
       },
     ],

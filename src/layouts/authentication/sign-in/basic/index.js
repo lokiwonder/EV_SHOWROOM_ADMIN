@@ -23,6 +23,7 @@ import { signin } from "utils/functions/axios";
 import { useNavigate } from "react-router-dom";
 // store
 import useDealerStore from "utils/stores/dealer.store";
+// import { getJWTCookie } from "utils/functions/cookie";
 
 function Basic() {
   const navigate = useNavigate();
@@ -73,8 +74,8 @@ function Basic() {
   );
 
   // useEffect(() => {
-  // if (loginFlag) navigate("../admin/electrifiedSetting");
-  // }, [loginFlag]);
+  //   if (getJWTCookie) navigate("../admin/electrifiedSetting");
+  // }, []);
 
   return (
     <BasicLayout image={bgImage}>

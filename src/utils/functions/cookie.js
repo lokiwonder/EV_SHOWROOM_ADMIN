@@ -7,8 +7,17 @@ export const getDealerCookie = cookies.get("dealerName");
 export const getNameCookie = cookies.get("name");
 export const getCountryCookie = cookies.get("country");
 export const removeAllCookie = () => {
-  cookies.remove("access_token");
-  cookies.remove("dealerName");
-  cookies.remove("name");
-  cookies.remove("country");
+  const expires = new Date();
+  cookies.set("access_token", "", {
+    expires,
+  });
+  cookies.set("dealerName", "", {
+    expires,
+  });
+  cookies.set("name", "", {
+    expires,
+  });
+  cookies.set("country", "", {
+    expires,
+  });
 };

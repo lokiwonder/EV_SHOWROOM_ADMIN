@@ -1,25 +1,22 @@
-// @mui material components
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Switch from "@mui/material/Switch";
 
-// Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-// Material Dashboard 2 PRO React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-// Images
 import { Card } from "@mui/material";
 import { useEffect, useState } from "react";
 import { displaySetup, saveEelctrifiedSettting } from "utils/functions/axios";
 import { GET_IMAGE_URL } from "utils/constants";
 import MDButton from "components/MDButton";
-// import { useNavigate } from "react-router-dom";
+
 import { getCountry } from "utils/functions/country";
-import { getCountryCookie } from "utils/functions/cookie";
+// import { getCountryCookie } from "utils/functions/cookie";
+import { Cookies } from "react-cookie";
 
 function ElectrifiedSetting() {
   // variable : //
@@ -27,9 +24,9 @@ function ElectrifiedSetting() {
   const [displayableElectrifies, setDisplayableElectrifies] = useState([]);
   const [electrifiedVersion, setElectrifiedVersion] = useState(0);
   const [rerender, setRerender] = useState(false);
-  const [countryInfo, setCountryInfo] = useState({});
+  const [countryInfo, setCountryInfo] = useState(null);
 
-  // const navigate = useNavigate();
+  const cookies = new Cookies();
 
   // function: //
   // description: //
@@ -66,16 +63,11 @@ function ElectrifiedSetting() {
         setDisplayableElectrifies(display.displayableElectrifies);
         setElectrifiedVersion(display.electrified_version);
       }
-      // else {
-      //   navigate("../admin");
-      // }
     };
-    const country = getCountry(getCountryCookie);
+    const country = getCountry(cookies.get("country"));
 
     setCountryInfo(country);
     setDisplay();
-
-    return () => setCountryInfo({});
   }, []);
 
   // component: //
@@ -138,7 +130,9 @@ function ElectrifiedSetting() {
                     lineHeight={1}
                     sx={{ mx: 3 }}
                   >
-                    {`${countryInfo.name} (${countryInfo.enName}) - electrified version: ${electrifiedVersion}`}
+                    {countryInfo
+                      ? `${countryInfo.name} (${countryInfo.enName}) - electrified version: ${electrifiedVersion}`
+                      : ``}
                   </MDTypography>
                 </Grid>
                 <Grid item xs={6} md={6} lg={6}>

@@ -1,23 +1,17 @@
 import { useState, useEffect } from "react";
-// react-router components
 import { useLocation, useNavigate } from "react-router-dom";
 
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
 
-// @material-ui core components
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
 
-// Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 
-// Material Dashboard 2 PRO React examples
 import Breadcrumbs from "examples/Breadcrumbs";
 
-// Custom styles for DashboardNavbar
 import {
   navbar,
   navbarContainer,
@@ -26,7 +20,6 @@ import {
   navbarMobileMenu,
 } from "examples/Navbars/DashboardNavbar/styles";
 
-// Material Dashboard 2 PRO React context
 import {
   useMaterialUIController,
   setTransparentNavbar,
@@ -36,11 +29,8 @@ import MDTypography from "components/MDTypography";
 
 import useDealerStore from "utils/stores/dealer.store";
 
-import {
-  // getJWTCookie,
-  // getDealerCookie,
-  removeAllCookie,
-} from "utils/functions/cookie";
+import { removeAllCookie } from "utils/functions/cookie";
+import { Cookies } from "react-cookie";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const { dealer } = useDealerStore();
@@ -49,17 +39,30 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, darkMode } = controller;
   const route = useLocation().pathname.split("/").slice(1);
 
+  const cookies = new Cookies();
   const navigate = useNavigate();
 
   const onSignoutHandler = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
       removeAllCookie();
+      const expires = new Date();
+      cookies.set("access_token", "", {
+        expires,
+      });
+      cookies.set("dealerName", "", {
+        expires,
+      });
+      cookies.set("name", "", {
+        expires,
+      });
+      cookies.set("country", "", {
+        expires,
+      });
       navigate("../admin");
     }
   };
 
   useEffect(() => {
-    console.log(dealer);
     // todo: cookie가 존재하지 않는다면 로그인 화면으로 이동
     // if (getJWTCookie === undefined || getDealerCookie === undefined)
     //   navigate("../admin");
@@ -109,6 +112,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
       return colorValue;
     },
   });
+
+  useEffect(() => {
+    const at = cookies.get("access_token");
+    if (!at) navigate("../admin");
+  }, []);
 
   return (
     <AppBar
