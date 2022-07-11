@@ -91,8 +91,8 @@ export const REUNION = { code: "RE", name: "Reunion", enName: "Reunion" };
 
 export const SHOWROOMS = [
   { label: "ELECTRIFIED", name: "ELECTRIFIED" },
-  { label: "POWERTRAIN", name: "POWERTRAIN" },
-  { label: "CONNECTIVITY", name: "CONNECTIVITY" },
+  // { label: "POWERTRAIN", name: "POWERTRAIN" },
+  // { label: "CONNECTIVITY", name: "CONNECTIVITY" },
 ];
 
 export const ELECTRIFIED_CLASS = [
