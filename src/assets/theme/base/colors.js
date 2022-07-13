@@ -1,28 +1,63 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-/**
- * The base colors for the Material Dashboard 2 PRO React.
- * You can add new color using this file.
- * You can customized the colors for the entire Material Dashboard 2 PRO React using thie file.
- */
-
 const colors = {
-  hyundaiPrimary: {
-    main: "#002c5f",
-    default: "#002c5f",
+  blue: {
+    main: "#002C5F",
+    default: "#002C5F",
+  },
+
+  black: {
+    light: "#000000",
+    main: "#000000",
+    focus: "#000000",
+  },
+
+  darkerGray: {
+    main: "#CCCCCC",
+    default: "#CCCCCC",
+  },
+
+  gray: {
+    main: "#DDDDDD",
+    default: "#DDDDDD",
+  },
+
+  lightGray: {
+    main: "#EEEEEE",
+    default: "#EEEEEE",
+  },
+
+  brown: {
+    main: "#A36B4F",
+    default: "#A36B4F",
+  },
+
+  sand: {
+    main: "#E4DCD3",
+    default: "#E4DCD3",
+  },
+
+  lightSand: {
+    main: "#F6F3F2",
+    default: "#F5F3F2",
+  },
+
+  white: {
+    main: "#FFFFFF",
+    focus: "#FFFFFF",
+  },
+
+  activeBlue: {
+    main: "#00AAD2",
+    focus: "#00AAD2",
+  },
+
+  skyblue: {
+    main: "#AACAE6",
+    focus: "#AACAE6",
+  },
+
+  activeRed: {
+    main: "#E63312",
+    focus: "#E63312",
   },
 
   background: {
@@ -36,17 +71,6 @@ const colors = {
 
   transparent: {
     main: "transparent",
-  },
-
-  white: {
-    main: "#ffffff",
-    focus: "#ffffff",
-  },
-
-  black: {
-    light: "#000000",
-    main: "#000000",
-    focus: "#000000",
   },
 
   primary: {
@@ -99,11 +123,6 @@ const colors = {
     700: "#495057",
     800: "#343a40",
     900: "#212529",
-  },
-
-  activeRed: {
-    main: "#E63312",
-    default: "#E63312",
   },
 
   gradients: {

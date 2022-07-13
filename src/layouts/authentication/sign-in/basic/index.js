@@ -15,7 +15,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.png";
 import logo from "assets/images/hyundai_logo.png";
 import { Grid } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // util
 // import { isValidPassword } from "utils/functions/validation";
@@ -24,6 +24,11 @@ import { useNavigate } from "react-router-dom";
 // store
 import useDealerStore from "utils/stores/dealer.store";
 // import { getJWTCookie } from "utils/functions/cookie";
+
+import { Cookies } from "react-cookie";
+import { BRAND } from "utils/constants";
+
+const cookies = new Cookies();
 
 function Basic() {
   const navigate = useNavigate();
@@ -73,9 +78,10 @@ function Basic() {
     </MDTypography>
   );
 
-  // useEffect(() => {
-  //   if (getJWTCookie) navigate("../admin/electrifiedSetting");
-  // }, []);
+  useEffect(() => {
+    const accessToken = cookies.get("access_token");
+    if (accessToken) navigate("../admin/setDisplayVehicle");
+  }, []);
 
   return (
     <BasicLayout image={bgImage}>
@@ -100,7 +106,7 @@ function Basic() {
             zIndex={1}
           />
           <MDTypography variant="h6" fontWeight="medium" color="white" mt={1}>
-            EV SHOWROOM Admin
+            {BRAND}
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>

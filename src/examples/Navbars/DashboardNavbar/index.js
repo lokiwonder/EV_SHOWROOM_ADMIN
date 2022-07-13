@@ -16,7 +16,6 @@ import {
   navbar,
   navbarContainer,
   navbarRow,
-  navbarDesktopMenu,
   navbarMobileMenu,
 } from "examples/Navbars/DashboardNavbar/styles";
 
@@ -138,22 +137,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
             route={route}
             light={light}
           />
-          <IconButton
-            sx={navbarDesktopMenu}
-            onClick={handleMiniSidenav}
-            size="small"
-            disableRipple
-          >
-            <Icon fontSize="medium" sx={iconsStyle}>
-              {miniSidenav ? "menu_open" : "menu"}
-            </Icon>
-          </IconButton>
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
             <MDTypography
               variant="h5"
-              color="hyundaiPrimary"
+              color="blue"
               lineHeight={1}
               sx={{ cursor: "pointer", mx: 3 }}
               onClick={() => onSignoutHandler()}

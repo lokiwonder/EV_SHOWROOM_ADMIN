@@ -6,6 +6,7 @@ import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import { GET_IMAGE_URL, ELECTRIFIED } from "utils/constants";
 import { getTranslationItem } from "utils/functions/axios";
+import { getLanguageName } from "utils/functions/language";
 
 function itemCard(
   group,
@@ -60,7 +61,7 @@ function itemCard(
           {item.type !== "Template 3" &&
             (item.translation_status ? (
               <MDTypography variant="body2" color="text" opacity={0.6}>
-                {language}
+                {getLanguageName(language)}
               </MDTypography>
             ) : (
               <MDTypography variant="body2" color="error">
@@ -70,7 +71,7 @@ function itemCard(
           <Divider />
           <MDBox>
             <MDButton
-              color="hyundaiPrimary"
+              color="blue"
               fullWidth
               disabled={item.type === "Template 3"}
               onClick={() => onEditHandler()}
@@ -81,8 +82,8 @@ function itemCard(
             </MDButton>
           </MDBox>
           <MDBox pt={1}>
-            <MDButton color="hyundaiPrimary" fullWidth>
-              <MDTypography variant="h6" color="white">
+            <MDButton style={{ backgroundColor: "#E4DCD3" }} fullWidth>
+              <MDTypography variant="h6" style={{ color: "#A36B4F" }}>
                 PREVIEW
               </MDTypography>
             </MDButton>

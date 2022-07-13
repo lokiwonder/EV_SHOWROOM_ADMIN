@@ -1,20 +1,22 @@
-import ElectrifiedSetting from "layouts/amin/electrifiedSetting";
+import SetDisplayVehicle from "layouts/amin/electrifiedSetting";
 import Translation from "layouts/amin/translation";
 // import PricingPage from "layouts/pages/pricing-page";
 import SignIn from "layouts/authentication/sign-in/basic";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import DirectionsCarRoundedIcon from "@mui/icons-material/DirectionsCarRounded";
+import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
 
 const routes = [
   {
     type: "none",
-    name: "SignIn",
-    key: "signin",
+    name: "Sign In",
+    key: "sign in",
     collapse: [
       {
-        name: "Electrified Setting",
-        key: "Electrified Setting",
+        name: "SignIn",
+        key: "sign in",
         route: "/admin",
         component: <SignIn />,
       },
@@ -22,20 +24,32 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Admin",
-    key: "admin",
-    icon: <Icon fontSize="medium">dashboard</Icon>,
+    name: "Setup Display Vehicle",
+    key: "Setup Display Vehicle",
+    route: "/admin/setDisplayVehicle",
+    icon: <DirectionsCarRoundedIcon fontSize="medium" />,
+    noCollapse: true,
     collapse: [
       {
-        name: "Electrified Setting",
-        key: "electrifiedSetting",
-        route: "/admin/electrifiedSetting",
-        component: <ElectrifiedSetting />,
+        name: "Set Display Vehicle",
+        key: "Set Display Vehicle",
+        route: "/admin/setDisplayVehicle",
+        component: <SetDisplayVehicle />,
       },
+    ],
+  },
+  {
+    type: "collapse",
+    name: "Translations",
+    key: "Translations",
+    route: "/admin/translations",
+    icon: <ArticleRoundedIcon fontSize="medium" />,
+    noCollapse: true,
+    collapse: [
       {
         name: "Translation",
         key: "translation",
-        route: "/admin/translation",
+        route: "/admin/translations",
         component: <Translation />,
       },
     ],

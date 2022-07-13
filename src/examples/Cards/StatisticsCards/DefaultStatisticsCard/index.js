@@ -50,7 +50,11 @@ function DefaultStatisticsCard({ title, count, percentage, dropdown }) {
               <MDTypography variant="h5" fontWeight="bold">
                 {count}
               </MDTypography>
-              <MDTypography variant="button" fontWeight="bold" color={percentage.color}>
+              <MDTypography
+                variant="button"
+                fontWeight="bold"
+                color={percentage.color}
+              >
                 {percentage.value}&nbsp;
                 <MDTypography
                   variant="button"

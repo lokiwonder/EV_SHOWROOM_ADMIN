@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Switch from "@mui/material/Switch";
+import { Card } from "@mui/material";
 
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -8,15 +9,14 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-import { Card } from "@mui/material";
 import { useEffect, useState } from "react";
-import { displaySetup, saveEelctrifiedSettting } from "utils/functions/axios";
-import { GET_IMAGE_URL } from "utils/constants";
+import { Cookies } from "react-cookie";
 import MDButton from "components/MDButton";
 
 import { getCountry } from "utils/functions/country";
-// import { getCountryCookie } from "utils/functions/cookie";
-import { Cookies } from "react-cookie";
+import { displaySetup, saveEelctrifiedSettting } from "utils/functions/axios";
+import { GET_IMAGE_URL } from "utils/constants";
+import CountrySelectorCard from "../translation/components/CountrySelectCard";
 
 function ElectrifiedSetting() {
   // variable : //
@@ -64,17 +64,18 @@ function ElectrifiedSetting() {
         setElectrifiedVersion(display.electrified_version);
       }
     };
-    const country = getCountry(cookies.get("country"));
 
+    const country = getCountry(cookies.get("country"));
     setCountryInfo(country);
+
     setDisplay();
   }, []);
 
   // component: //
   function electrifiedCard(electrified) {
     return (
-      <Grid key={electrified.electrified_item_name} item xs={12} md={6} lg={4}>
-        <MDBox mb={3} mt={15}>
+      <Grid key={electrified.electrified_item_name} item xs={12} md={6} lg={3}>
+        <MDBox mb={3} mt={8}>
           <Card style={{ backgroundColor: "#F6F3F2" }}>
             <MDBox padding="1rem" textAlign="center">
               <MDBox
@@ -82,14 +83,14 @@ function ElectrifiedSetting() {
                 src={`${GET_IMAGE_URL}${electrified.main_image}`}
                 borderRadius="lg"
                 py={2}
-                mt={-15}
-                height="12rem"
+                mt={-12}
+                height="8rem"
               />
             </MDBox>
             <MDTypography
               px={1}
               variant="h4"
-              color="hyundaiPrimary"
+              color="blue"
               lineHeight={1}
               sx={{ cursor: "pointer", mx: 3 }}
             >
@@ -119,21 +120,31 @@ function ElectrifiedSetting() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={1}>
-        <MDBox mt={1}>
+        <MDBox mt={2}>
+          <Grid container spacing={1.5}>
+            <CountrySelectorCard />
+          </Grid>
+        </MDBox>
+        <MDBox style={{ marginTop: "24px" }}>
           <Card>
-            <MDBox px={2} mt={2}>
+            <MDBox style={{ padding: "24px" }}>
               <Grid container space={2}>
                 <Grid item xs={6} md={6} lg={6}>
-                  <MDTypography
-                    variant="body1"
-                    color="hyundaiPrimary"
-                    lineHeight={1}
-                    sx={{ mx: 3 }}
-                  >
-                    {countryInfo
-                      ? `${countryInfo.name} (${countryInfo.enName}) - electrified version: ${electrifiedVersion}`
-                      : ``}
-                  </MDTypography>
+                  <MDBox style={{ display: "flex", itemAligns: "center" }}>
+                    {countryInfo && (
+                      <MDTypography
+                        variant="body1"
+                        color="blue"
+                        lineHeight={1}
+                        style={{ verticalAlign: "middle" }}
+                      >
+                        Setup Display Vehicle -{" "}
+                        <span style={{ color: "#00AAD2" }}>
+                          v {electrifiedVersion}
+                        </span>
+                      </MDTypography>
+                    )}
+                  </MDBox>
                 </Grid>
                 <Grid item xs={6} md={6} lg={6}>
                   <MDButton
@@ -141,14 +152,16 @@ function ElectrifiedSetting() {
                     variant="gradient"
                     color="hyundai_primary_g"
                     onClick={() => onSaveHandler()}
+                    size="small"
                   >
                     Save
                   </MDButton>
                 </Grid>
               </Grid>
             </MDBox>
+            <hr />
             <MDBox px={2} py={5} minHeight="80vh">
-              <Grid container spacing={3}>
+              <Grid container spacing={4}>
                 {electrifiedAll &&
                   electrifiedAll.map((electrified) =>
                     electrifiedCard(electrified)

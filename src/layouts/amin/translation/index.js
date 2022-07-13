@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Cookies } from "react-cookie";
 
 import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -16,6 +17,7 @@ import MDBox from "components/MDBox";
 
 import { getCountry } from "utils/functions/country";
 import { getCountryCookie } from "utils/functions/cookie";
+import { getLanguageName } from "utils/functions/language";
 import {
   SHOWROOMS,
   LANGUAGE,
@@ -56,8 +58,9 @@ function Translation() {
   });
   const [template2Item, setTemplate2Item] = useState(["", "", ""]);
 
+  const cookie = new Cookies();
+
   console.log(countryInfo);
-  console.log(originalItem);
 
   // function: //
   const listReset = (translationsItems) => {
@@ -82,7 +85,6 @@ function Translation() {
     setTranslationItem(null);
     // description:
     setTranslationLanguage(v.name);
-    console.log(countryCode, showroom, group, v.name);
     // description:
     const translationsItems = await getTranslations(
       countryCode,
@@ -152,14 +154,24 @@ function Translation() {
     setTemplate2Item(["", "", ""]);
   };
 
+  useEffect(() => {
+    setCountryCode(cookie.get("country"));
+  }, []);
+
   // component:  //
   function showroomSelectorCard() {
     return (
       <Grid item sm={12} lg={3}>
-        <Card style={{ height: "100%" }}>
-          <MDBox p={3}>
-            <MDTypography pt={1} variant="h6">
-              Select Showroom
+        <Card>
+          <MDBox p="16px">
+            <MDTypography
+              style={{
+                fontSize: "14px",
+                fontWeight: 400,
+                color: "#7b809a",
+              }}
+            >
+              Category
             </MDTypography>
             <Autocomplete
               onChange={(event, value) => onShowroomHandler(event, value)}
@@ -183,9 +195,15 @@ function Translation() {
     return (
       <Grid item sm={12} lg={3}>
         <Card style={{ height: "100%" }}>
-          <MDBox p={3}>
-            <MDTypography pt={1} variant="h6">
-              Select Vehicle
+          <MDBox p="16px">
+            <MDTypography
+              style={{
+                fontSize: "14px",
+                fontWeight: 400,
+                color: "#7b809a",
+              }}
+            >
+              Vehicle
             </MDTypography>
             <Autocomplete
               onChange={(event, value) => onGroupHandler(event, value)}
@@ -209,9 +227,15 @@ function Translation() {
     return (
       <Grid item sm={12} lg={3}>
         <Card style={{ height: "100%" }}>
-          <MDBox p={3}>
-            <MDTypography pt={1} variant="h6">
-              Select Language
+          <MDBox p="16px">
+            <MDTypography
+              style={{
+                fontSize: "14px",
+                fontWeight: 400,
+                color: "#7b809a",
+              }}
+            >
+              Language
             </MDTypography>
             <Autocomplete
               onChange={(event, value) =>
@@ -336,14 +360,14 @@ function Translation() {
           <MDBox p={2}>
             <Grid container spacing={3}>
               <Grid item sm={12} lg={4}>
-                <MDButton color="hyundaiPrimary" fullWidth>
+                <MDButton color="blue" fullWidth>
                   <MDTypography variant="h6" color="white">
                     PREVIEW ORIGINAL PAGE
                   </MDTypography>
                 </MDButton>
               </Grid>
               <Grid item sm={12} lg={4}>
-                <MDButton color="hyundaiPrimary" fullWidth>
+                <MDButton color="blue" fullWidth>
                   <MDTypography variant="h6" color="white">
                     PREVIEW TRANSLATED PAGE
                   </MDTypography>
@@ -351,7 +375,7 @@ function Translation() {
               </Grid>
               <Grid item sm={12} lg={4}>
                 <MDButton
-                  color="hyundaiPrimary"
+                  color="blue"
                   fullWidth
                   onClick={() => template1Save()}
                 >
@@ -411,14 +435,14 @@ function Translation() {
           <MDBox p={2}>
             <Grid container spacing={3}>
               <Grid item sm={12} lg={4}>
-                <MDButton color="hyundaiPrimary" fullWidth>
+                <MDButton color="blue" fullWidth>
                   <MDTypography variant="h6" color="white">
                     PREVIEW ORIGINAL PAGE
                   </MDTypography>
                 </MDButton>
               </Grid>
               <Grid item sm={12} lg={4}>
-                <MDButton color="hyundaiPrimary" fullWidth>
+                <MDButton color="blue" fullWidth>
                   <MDTypography variant="h6" color="white">
                     PREVIEW TRANSLATED PAGE
                   </MDTypography>
@@ -426,7 +450,7 @@ function Translation() {
               </Grid>
               <Grid item sm={12} lg={4}>
                 <MDButton
-                  color="hyundaiPrimary"
+                  color="blue"
                   fullWidth
                   onClick={() => template2Save()}
                 >
@@ -452,48 +476,60 @@ function Translation() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
-        {/* 
         <MDBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={12}>
-              <Card>
-                <MDTypography p={2} variant="h3">
-                  {`${countryInfo.name} (${countryInfo.enName})`}
-                </MDTypography>
-              </Card>
-            </Grid>
-          </Grid>
-        </MDBox>
-        */}
-        <MDBox mb={3}>
-          <Grid container spacing={4}>
-            <CountrySelectorCard setter={setCountryCode} />
-            {countryCode && showroomSelectorCard()}
-            {showroom && vehicleSelectorCard()}
-            {group && languageSelectorCard()}
+          <Grid container spacing={1.5}>
+            <CountrySelectorCard />
+            {languageSelectorCard()}
+            {showroomSelectorCard()}
+            {vehicleSelectorCard()}
           </Grid>
         </MDBox>
 
         {!translationItem && translations && (
-          <MDBox mb={3}>
+          <MDBox>
             <Card>
-              <MDBox m={2}>
+              <MDBox p="24px">
                 <MDTypography
-                  p={1}
-                  variant="h5"
-                >{`translation version: ${translationVersion}`}</MDTypography>
-                <Grid container spacing={4}>
-                  <Grid item sm={12} lg={3}>
+                  variant="body1"
+                  color="blue"
+                  lineHeight={1}
+                  style={{ verticalAlign: "middle", marginBottom: "24px" }}
+                >
+                  Setup Display Vehicle -{" "}
+                  <span style={{ color: "#00AAD2" }}>
+                    v {translationVersion}
+                  </span>
+                </MDTypography>
+                <Grid container>
+                  <Grid item sm={12} lg={3} xl={3}>
                     <MDBox mt={1}>
-                      <Card style={{ backgroundColor: "#F6F3F2" }}>
-                        <Grid container spacing={2}>
+                      <Card
+                        style={{
+                          backgroundColor: "#F6F3F2",
+                          marginRight: "24px",
+                        }}
+                      >
+                        <Grid container>
                           <Grid item xs={7}>
-                            <MDTypography p={2} variant="body2">
+                            <MDTypography
+                              p={2}
+                              style={{
+                                fontWeight: 500,
+                                fontSize: "16px",
+                                opacity: "0.3",
+                              }}
+                            >
                               TOTAL PAGES
                             </MDTypography>
                           </Grid>
                           <Grid item xs={5}>
-                            <MDTypography p={2} textAlign="center" variant="h2">
+                            <MDTypography
+                              py={2}
+                              color="black"
+                              verticalAlign="middle"
+                              textAlign="center"
+                              variant="h2"
+                            >
                               {totalPages}
                             </MDTypography>
                           </Grid>
@@ -501,12 +537,24 @@ function Translation() {
                       </Card>
                     </MDBox>
                   </Grid>
-                  <Grid item sm={12} lg={3}>
+                  <Grid item sm={12} md={3} xl={3}>
                     <MDBox mt={1}>
-                      <Card style={{ backgroundColor: "#F6F3F2" }}>
+                      <Card
+                        style={{
+                          backgroundColor: "#F6F3F2",
+                          marginRight: "24px",
+                        }}
+                      >
                         <Grid container spacing={2}>
                           <Grid item xs={7}>
-                            <MDTypography p={2} variant="body2">
+                            <MDTypography
+                              p={2}
+                              style={{
+                                fontWeight: 500,
+                                fontSize: "16px",
+                                opacity: "0.3",
+                              }}
+                            >
                               UNDEFINED
                             </MDTypography>
                           </Grid>
@@ -524,17 +572,34 @@ function Translation() {
                       </Card>
                     </MDBox>
                   </Grid>
-                  <Grid item sm={12} lg={3}>
+                  <Grid item sm={12} md={3} xl={3}>
                     <MDBox mt={1}>
-                      <Card style={{ backgroundColor: "#F6F3F2" }}>
+                      <Card
+                        style={{
+                          backgroundColor: "#F6F3F2",
+                          marginRight: "24px",
+                        }}
+                      >
                         <Grid container spacing={2}>
                           <Grid item xs={7}>
-                            <MDTypography p={2} variant="body2">
-                              {translationLanguage}
+                            <MDTypography
+                              p={2}
+                              style={{
+                                fontWeight: 500,
+                                fontSize: "16px",
+                                opacity: "0.3",
+                              }}
+                            >
+                              {getLanguageName(translationLanguage)}
                             </MDTypography>
                           </Grid>
                           <Grid item xs={5}>
-                            <MDTypography p={2} textAlign="center" variant="h2">
+                            <MDTypography
+                              p={2}
+                              textAlign="center"
+                              variant="h2"
+                              style={{ color: "#00AAD2" }}
+                            >
                               {translationPages}
                             </MDTypography>
                           </Grid>

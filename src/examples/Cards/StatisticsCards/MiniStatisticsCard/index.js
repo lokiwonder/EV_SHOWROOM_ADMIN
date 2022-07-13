@@ -146,7 +146,7 @@ MiniStatisticsCard.defaultProps = {
 // Typechecking props for the MiniStatisticsCard
 MiniStatisticsCard.propTypes = {
   bgColor: PropTypes.oneOf([
-    "hyundaiPrimary",
+    "blue",
     "white",
     "primary",
     "secondary",
@@ -163,7 +163,7 @@ MiniStatisticsCard.propTypes = {
   count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   percentage: PropTypes.shape({
     color: PropTypes.oneOf([
-      "hyundaiPrimary",
+      "blue",
       "primary",
       "secondary",
       "info",
@@ -177,7 +177,7 @@ MiniStatisticsCard.propTypes = {
   }),
   icon: PropTypes.shape({
     color: PropTypes.oneOf([
-      "hyundaiPrimary",
+      "blue",
       "primary",
       "secondary",
       "info",

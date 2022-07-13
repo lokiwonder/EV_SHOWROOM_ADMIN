@@ -63,7 +63,7 @@ const MDTypography = forwardRef(
 
 // Setting default values for the props of MDTypography
 MDTypography.defaultProps = {
-  color: "hyundaiPrimary",
+  color: "blue",
   fontWeight: false,
   textTransform: "none",
   verticalAlign: "unset",
@@ -74,7 +74,7 @@ MDTypography.defaultProps = {
 // Typechecking props for the MDTypography
 MDTypography.propTypes = {
   color: PropTypes.oneOf([
-    "hyundaiPrimary",
+    "blue",
     "inherit",
     "primary",
     "secondary",

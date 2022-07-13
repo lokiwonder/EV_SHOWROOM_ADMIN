@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 
-// react-router-dom components
 import { useLocation, NavLink } from "react-router-dom";
 
-// prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
 
-// @mui material components
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
@@ -77,19 +74,13 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       );
     }
 
-    /** 
-     The event listener that's calling the handleMiniSidenav function when resizing the window.
-    */
     window.addEventListener("resize", handleMiniSidenav);
 
-    // Call the handleMiniSidenav function to set the state with the initial value.
     handleMiniSidenav();
 
-    // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleMiniSidenav);
   }, [dispatch, location]);
 
-  // Render all the nested collapse items from the routes.js
   const renderNestedCollapse = (collapse) => {
     const template = collapse.map(({ name, route, key, href }) =>
       href ? (
@@ -352,7 +343,7 @@ Sidenav.defaultProps = {
 // Typechecking props for the Sidenav
 Sidenav.propTypes = {
   color: PropTypes.oneOf([
-    "hyundaiPrimary",
+    "blue",
     "primary",
     "secondary",
     "info",

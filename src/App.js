@@ -27,6 +27,7 @@ import { useMaterialUIController, setMiniSidenav } from "context";
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+import { BRAND } from "utils/constants";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -99,7 +100,7 @@ export default function App() {
               ? brandDark
               : brandWhite
           }
-          brandName="EV SHOWROOM Admin"
+          brandName={BRAND}
           routes={routes}
           onMouseEnter={handleOnMouseEnter}
           onMouseLeave={handleOnMouseLeave}

@@ -12,7 +12,7 @@ const pageRoutes = [
         icon: <Icon>dashboard</Icon>,
         collapse: [
           {
-            name: "electrifiedSetting",
+            name: "Set Display Vehicle",
             route: "/dashboards/analytics",
           },
           {

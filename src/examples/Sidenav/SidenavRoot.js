@@ -22,11 +22,11 @@ export default styled(Drawer)(({ theme, ownerState }) => {
   const { transparentSidenav, whiteSidenav, miniSidenav } = ownerState;
 
   const sidebarWidth = 250;
-  const { transparent, white, hyundaiPrimary } = palette;
+  const { transparent, white, blue } = palette;
   const { xxl } = boxShadows;
   const { pxToRem } = functions;
 
-  let backgroundValue = hyundaiPrimary.default;
+  let backgroundValue = blue.default;
 
   if (transparentSidenav) {
     backgroundValue = transparent.main;
