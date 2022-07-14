@@ -1,7 +1,7 @@
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 
-import { Card, Divider } from "@mui/material";
+import { Card } from "@mui/material";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import { GET_IMAGE_URL, ELECTRIFIED } from "utils/constants";
@@ -49,26 +49,26 @@ function itemCard(
               style={{ width: "200px", height: "160px", objectFit: "cover" }}
             />
           </MDBox>
-
-          <MDTypography variant="h5">
+          <MDTypography mt="16px" variant="h6" color="darkGray">
             {`${menu} #${item.sequence_number + 1}`}
           </MDTypography>
-          {item.type === "Template 3" ? (
-            <MDTypography variant="body2" color="text" opacity={0.6}>
-              No Text
-            </MDTypography>
-          ) : null}
-          {item.type !== "Template 3" &&
-            (item.translation_status ? (
-              <MDTypography variant="body2" color="text" opacity={0.6}>
-                {getLanguageName(language)}
+          <MDBox mt="6px">
+            {item.type === "Template 3" ? (
+              <MDTypography variant="b7" color="text" opacity={0.6}>
+                No Text
               </MDTypography>
-            ) : (
-              <MDTypography variant="body2" color="error">
-                UNDEFINED
-              </MDTypography>
-            ))}
-          <Divider />
+            ) : null}
+            {item.type !== "Template 3" &&
+              (item.translation_status ? (
+                <MDTypography variant="b7" color="text" opacity={0.6}>
+                  {getLanguageName(language)}
+                </MDTypography>
+              ) : (
+                <MDTypography variant="b7" color="activeRed" opacity={0.3}>
+                  UNDEFINED
+                </MDTypography>
+              ))}
+          </MDBox>
           <MDBox>
             <MDButton
               color="blue"
@@ -76,14 +76,14 @@ function itemCard(
               disabled={item.type === "Template 3"}
               onClick={() => onEditHandler()}
             >
-              <MDTypography variant="h6" color="white">
+              <MDTypography variant="b7" color="white">
                 EDIT
               </MDTypography>
             </MDButton>
           </MDBox>
           <MDBox pt={1}>
             <MDButton style={{ backgroundColor: "#E4DCD3" }} fullWidth>
-              <MDTypography variant="h6" style={{ color: "#A36B4F" }}>
+              <MDTypography variant="b7" color="brown">
                 PREVIEW
               </MDTypography>
             </MDButton>

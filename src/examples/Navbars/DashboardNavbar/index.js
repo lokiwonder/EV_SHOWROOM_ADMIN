@@ -7,6 +7,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import MDBox from "components/MDBox";
 
@@ -141,13 +142,16 @@ function DashboardNavbar({ absolute, light, isMini }) {
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
             <MDTypography
-              variant="h5"
+              variant="b4"
               color="blue"
               lineHeight={1}
               sx={{ cursor: "pointer", mx: 3 }}
               onClick={() => onSignoutHandler()}
             >
               {dealer.dealerName}
+              <IconButton>
+                <KeyboardArrowDownIcon />
+              </IconButton>
             </MDTypography>
             <MDBox color={light ? "white" : "inherit"}>
               <IconButton

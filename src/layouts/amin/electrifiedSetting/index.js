@@ -89,10 +89,10 @@ function ElectrifiedSetting() {
             </MDBox>
             <MDTypography
               px={1}
-              variant="h4"
-              color="blue"
+              color="darkGray"
               lineHeight={1}
-              sx={{ cursor: "pointer", mx: 3 }}
+              sx={{ mx: 3 }}
+              style={{ fontWeight: 500 }}
             >
               {electrified.electrified_item_name}
             </MDTypography>
@@ -105,6 +105,7 @@ function ElectrifiedSetting() {
                     electrified.electrified_item_name
                   ) !== -1
                 }
+                color="blue"
                 onClick={() =>
                   onSwitchHandler(electrified.electrified_item_name)
                 }
@@ -119,7 +120,7 @@ function ElectrifiedSetting() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={1}>
+      <MDBox mt={-4} py={1}>
         <MDBox mt={2}>
           <Grid container spacing={1.5}>
             <CountrySelectorCard />
@@ -159,8 +160,8 @@ function ElectrifiedSetting() {
                 </Grid>
               </Grid>
             </MDBox>
-            <hr />
-            <MDBox px={2} py={5} minHeight="80vh">
+            <Divider light />
+            <MDBox px={2} py={5}>
               <Grid container spacing={4}>
                 {electrifiedAll &&
                   electrifiedAll.map((electrified) =>

@@ -89,12 +89,13 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           href={href}
           target="_blank"
           rel="noreferrer"
+          mt={3}
           sx={{ textDecoration: "none" }}
         >
           <SidenavItem name={name} nested />
         </Link>
       ) : (
-        <NavLink to={route} key={key} sx={{ textDecoration: "none" }}>
+        <NavLink to={route} key={key} mt={3} sx={{ textDecoration: "none" }}>
           <SidenavItem name={name} active={route === pathname} nested />
         </NavLink>
       )
@@ -111,6 +112,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         returnValue = (
           <SidenavItem
             key={key}
+            mt={3}
             color={color}
             name={name}
             active={key === itemParentName ? "isParent" : false}
@@ -132,6 +134,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             key={key}
             target="_blank"
             rel="noreferrer"
+            mt={3}
             sx={{ textDecoration: "none" }}
           >
             <SidenavItem color={color} name={name} active={key === itemName} />
@@ -154,6 +157,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         if (href) {
           returnValue = (
             <Link
+              mt={3}
               href={href}
               key={key}
               target="_blank"
@@ -170,7 +174,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           );
         } else if (noCollapse && route) {
           returnValue = (
-            <NavLink to={route} key={key}>
+            <NavLink to={route} key={key} mt={3}>
               <SidenavCollapse
                 name={name}
                 icon={icon}
@@ -184,6 +188,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         } else {
           returnValue = (
             <SidenavCollapse
+              mt={3}
               key={key}
               name={name}
               icon={icon}
@@ -203,6 +208,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         if (href) {
           returnValue = (
             <Link
+              mt={3}
               href={href}
               key={key}
               target="_blank"
@@ -218,7 +224,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           );
         } else if (noCollapse && route) {
           returnValue = (
-            <NavLink to={route} key={key}>
+            <NavLink to={route} key={key} mt={3}>
               <SidenavCollapse
                 name={name}
                 noCollapse={noCollapse}
@@ -231,6 +237,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         } else {
           returnValue = (
             <SidenavCollapse
+              mt={3}
               key={key}
               name={name}
               active={key === collapseName}
@@ -248,6 +255,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       } else if (type === "title") {
         returnValue = (
           <MDTypography
+            mt={3}
             key={key}
             color={textColor}
             display="block"
@@ -255,7 +263,6 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             fontWeight="bold"
             textTransform="uppercase"
             pl={3}
-            mt={2}
             mb={1}
             ml={1}
           >
@@ -284,7 +291,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       variant="permanent"
       ownerState={{ transparentSidenav, whiteSidenav, miniSidenav, darkMode }}
     >
-      <MDBox pt={3} pb={1} px={4} textAlign="center">
+      <MDBox py={3} px={4} textAlign="center">
         <MDBox
           display={{ xs: "block", xl: "none" }}
           position="absolute"

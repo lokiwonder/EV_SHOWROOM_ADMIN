@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Hyundai Sans Head Medium';
+    src: url('./HyundaiSansHead-Medium.woff');
+  }
+
+  @font-face {
+    font-family: 'Hyundai Sans Head Regular';
+    src: url('./HyundaiSansHead-Regular.woff');
+  }

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "App";
 
+import "static/fonts/font.css";
+
 // Material Dashboard 2 PRO React Context Provider
 import { MaterialUIControllerProvider } from "context";
 

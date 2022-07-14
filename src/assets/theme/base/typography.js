@@ -1,34 +1,11 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-/**
- * The base typography styles for the Material Dashboard 2 PRO React.
- * You can add new typography style using this file.
- * You can customized the typography styles for the entire Material Dashboard 2 PRO React using thie file.
- */
-
-// Material Dashboard 2 PRO React Base Styles
 import colors from "assets/theme/base/colors";
 
-// Material Dashboard 2 PRO React Helper Functions
 import pxToRem from "assets/theme/functions/pxToRem";
 
 const { dark } = colors;
 
 const baseProperties = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontFamily: '"Hyundai Sans Head Regular"',
   fontWeightLighter: 100,
   fontWeightLight: 300,
   fontWeightRegular: 400,
@@ -66,67 +43,100 @@ const typography = {
   fontWeightBold: baseProperties.fontWeightBold,
 
   h1: {
-    fontSize: pxToRem(48),
-    lineHeight: 1.25,
+    fontFamily: '"Hyundai Sans Head Medium"',
+    fontWeight: 500,
+    fontSize: pxToRem(100),
+    lineHeight: "123.6px",
     ...baseHeadingProperties,
   },
 
   h2: {
-    fontSize: pxToRem(36),
-    lineHeight: 1.3,
+    fontFamily: '"Hyundai Sans Head Medium"',
+    fontWeight: 500,
+    fontSize: pxToRem(60),
+    lineHeight: "74.16px",
     ...baseHeadingProperties,
   },
 
   h3: {
-    fontSize: pxToRem(30),
-    lineHeight: 1.375,
+    fontFamily: '"Hyundai Sans Head Medium"',
+    fontWeight: 500,
+    fontSize: pxToRem(45),
+    lineHeight: "55.62px",
     ...baseHeadingProperties,
   },
 
   h4: {
-    fontSize: pxToRem(24),
-    lineHeight: 1.375,
+    fontFamily: '"Hyundai Sans Head Medium"',
+    fontWeight: 500,
+    fontSize: pxToRem(35),
+    lineHeight: "43.26px",
     ...baseHeadingProperties,
   },
 
   h5: {
-    fontSize: pxToRem(20),
-    lineHeight: 1.375,
+    fontFamily: '"Hyundai Sans Head Medium"',
+    fontWeight: 500,
+    fontSize: pxToRem(30),
+    lineHeight: "37.08px",
     ...baseHeadingProperties,
   },
 
   h6: {
-    fontSize: pxToRem(16),
-    lineHeight: 1.625,
+    fontFamily: '"Hyundai Sans Head Medium"',
+    fontWeight: 500,
+    fontSize: pxToRem(20),
+    lineHeight: "24.72px",
     ...baseHeadingProperties,
   },
 
-  subtitle1: {
-    fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeXL,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.625,
+  b1: {
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(40),
+    lineHeight: "49.44px",
   },
 
-  subtitle2: {
-    fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeMD,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.6,
+  b2: {
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(30),
+    lineHeight: "37.08px",
   },
 
-  body1: {
-    fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeXL,
-    fontWeight: baseProperties.fontWeightRegular,
-    lineHeight: 1.625,
+  b3: {
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(24),
+    lineHeight: "29.66px",
   },
 
-  body2: {
-    fontFamily: baseProperties.fontFamily,
-    fontSize: baseProperties.fontSizeMD,
-    fontWeight: baseProperties.fontWeightLight,
-    lineHeight: 1.6,
+  b4: {
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(12),
+    lineHeight: "14.83px",
+  },
+
+  b5: {
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(10),
+    lineHeight: "12.36px",
+  },
+
+  b6: {
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(20),
+    lineHeight: "24.72px",
+  },
+
+  b7: {
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(14),
+    lineHeight: "17.3px",
   },
 
   button: {

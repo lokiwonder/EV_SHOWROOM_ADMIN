@@ -164,16 +164,11 @@ function Translation() {
       <Grid item sm={12} lg={3}>
         <Card>
           <MDBox p="16px">
-            <MDTypography
-              style={{
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#7b809a",
-              }}
-            >
+            <MDTypography variant="b7" color="gray">
               Category
             </MDTypography>
             <Autocomplete
+              color="darkGray"
               onChange={(event, value) => onShowroomHandler(event, value)}
               options={SHOWROOMS}
               renderInput={(params) => (
@@ -528,7 +523,7 @@ function Translation() {
                               color="black"
                               verticalAlign="middle"
                               textAlign="center"
-                              variant="h2"
+                              variant="h4"
                             >
                               {totalPages}
                             </MDTypography>
@@ -561,9 +556,9 @@ function Translation() {
                           <Grid item xs={5}>
                             <MDTypography
                               p={2}
-                              color="error"
+                              color="activeRed"
                               textAlign="center"
-                              variant="h2"
+                              variant="h4"
                             >
                               {untranslationPages}
                             </MDTypography>
@@ -596,9 +591,9 @@ function Translation() {
                           <Grid item xs={5}>
                             <MDTypography
                               p={2}
+                              color="activeBlue"
                               textAlign="center"
-                              variant="h2"
-                              style={{ color: "#00AAD2" }}
+                              variant="h4"
                             >
                               {translationPages}
                             </MDTypography>

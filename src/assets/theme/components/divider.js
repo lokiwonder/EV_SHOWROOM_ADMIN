@@ -20,7 +20,7 @@ import colors from "assets/theme/base/colors";
 import rgba from "assets/theme/functions/rgba";
 import pxToRem from "assets/theme/functions/pxToRem";
 
-const { dark, transparent, white } = colors;
+const { dark, transparent, white, gray } = colors;
 
 const divider = {
   styleOverrides: {
@@ -33,7 +33,7 @@ const divider = {
       height: pxToRem(1),
       margin: `${pxToRem(16)} 0`,
       borderBottom: "none",
-      opacity: 0.25,
+      opacity: 0.7,
     },
 
     vertical: {
@@ -50,9 +50,9 @@ const divider = {
 
     light: {
       backgroundColor: transparent.main,
-      backgroundImage: `linear-gradient(to right, ${rgba(white.main, 0)}, ${
-        white.main
-      }, ${rgba(white.main, 0)}) !important`,
+      backgroundImage: `linear-gradient(to right, ${gray.main}, ${gray.main}, ${gray.main}) !important`,
+      margin: 0,
+      marginTop: -5,
 
       "&.MuiDivider-vertical": {
         backgroundImage: `linear-gradient(to bottom, ${rgba(white.main, 0)}, ${

@@ -55,6 +55,7 @@ function SidenavCollapse({
     <>
       <ListItem component="li">
         <MDBox
+          style={{ marginTop: "16px" }}
           {...rest}
           sx={(theme) =>
             collapseItem(theme, {
@@ -84,6 +85,7 @@ function SidenavCollapse({
           </ListItemIcon>
 
           <ListItemText
+            style={{ fontSize: "14px" }}
             primary={name}
             sx={(theme) =>
               collapseText(theme, {
