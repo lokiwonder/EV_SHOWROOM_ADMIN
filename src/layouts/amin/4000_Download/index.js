@@ -51,7 +51,7 @@ function ElectrifiedSetting() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
+      <MDBox mt={-2} py={1}>
         <Card>
           <MDBox p="24px">
             <MDTypography variant="h6" color="darkgray">

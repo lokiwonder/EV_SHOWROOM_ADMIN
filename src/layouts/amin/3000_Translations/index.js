@@ -93,9 +93,11 @@ function Translation() {
     const translationsItems = await getTranslations(
       countryCode,
       category,
-      vehicle,
-      v.name
+      v.name,
+      translationLanguage
     );
+
+    console.log(translationsItems);
     listReset(translationsItems);
   };
 
@@ -523,8 +525,8 @@ function Translation() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
-        <MDBox mb={3}>
+      <MDBox mt={-4} py={1}>
+        <MDBox mt={2} mb={3}>
           <Grid container spacing={1.5}>
             <CountrySelectorCard />
             {languageSelectorCard()}
