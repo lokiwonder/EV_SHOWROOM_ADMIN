@@ -69,7 +69,7 @@ function itemCard(
                 </MDTypography>
               ))}
           </MDBox>
-          <MDBox>
+          <MDBox mt="19px">
             <MDButton
               color="blue"
               fullWidth
@@ -81,7 +81,7 @@ function itemCard(
               </MDTypography>
             </MDButton>
           </MDBox>
-          <MDBox pt={1}>
+          <MDBox mt="16px">
             <MDButton style={{ backgroundColor: "#E4DCD3" }} fullWidth>
               <MDTypography variant="b7" color="brown">
                 PREVIEW

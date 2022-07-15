@@ -91,6 +91,7 @@ const typography = {
   },
 
   b1: {
+    display: "block",
     fontFamily: '"Hyundai Sans Head Regular"',
     fontWeight: 400,
     fontSize: pxToRem(40),
@@ -98,6 +99,7 @@ const typography = {
   },
 
   b2: {
+    display: "block",
     fontFamily: '"Hyundai Sans Head Regular"',
     fontWeight: 400,
     fontSize: pxToRem(30),
@@ -105,6 +107,7 @@ const typography = {
   },
 
   b3: {
+    display: "block",
     fontFamily: '"Hyundai Sans Head Regular"',
     fontWeight: 400,
     fontSize: pxToRem(24),
@@ -112,6 +115,7 @@ const typography = {
   },
 
   b4: {
+    display: "block",
     fontFamily: '"Hyundai Sans Head Regular"',
     fontWeight: 400,
     fontSize: pxToRem(12),
@@ -119,6 +123,7 @@ const typography = {
   },
 
   b5: {
+    display: "block",
     fontFamily: '"Hyundai Sans Head Regular"',
     fontWeight: 400,
     fontSize: pxToRem(10),
@@ -126,6 +131,7 @@ const typography = {
   },
 
   b6: {
+    display: "block",
     fontFamily: '"Hyundai Sans Head Regular"',
     fontWeight: 400,
     fontSize: pxToRem(20),
@@ -133,10 +139,19 @@ const typography = {
   },
 
   b7: {
+    display: "block",
     fontFamily: '"Hyundai Sans Head Regular"',
     fontWeight: 400,
     fontSize: pxToRem(14),
     lineHeight: "17.3px",
+  },
+
+  b8: {
+    display: "block",
+    fontFamily: '"Hyundai Sans Head Regular"',
+    fontWeight: 400,
+    fontSize: pxToRem(16),
+    lineHeight: "19.78px",
   },
 
   button: {

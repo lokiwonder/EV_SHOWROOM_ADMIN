@@ -188,7 +188,11 @@ export const BRAND = "EV Showroom Admin";
 export const ELECTRIFIED = "ELECTRIFIED";
 export const POWERTRAIN = "POWERTRAIN";
 export const CONNECTIVTY = "CONNECTIVTY";
+export const EVSHOWROOM = "EVSHOWROOM";
 
 export const TEMPLATE1 = "Template 1";
 export const TEMPLATE2 = "Template 2";
 export const TEMPLATE3 = "Template 3";
+
+export const DOWNLOAD_WINDOWS_TEXT = "Desktop app for Windows";
+export const DOWNLOAD_MAC_TEXT = "Desktop app for Mac";

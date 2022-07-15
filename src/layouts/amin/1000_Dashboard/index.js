@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { Cookies } from "react-cookie";
+
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Switch from "@mui/material/Switch";
@@ -9,14 +12,13 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-import { useEffect, useState } from "react";
-import { Cookies } from "react-cookie";
 import MDButton from "components/MDButton";
 
 import { getCountry } from "utils/functions/country";
 import { displaySetup, saveEelctrifiedSettting } from "utils/functions/axios";
 import { GET_IMAGE_URL } from "utils/constants";
-import CountrySelectorCard from "../translation/components/CountrySelectCard";
+
+import CountrySelectorCard from "../3000_Translations/components/CountrySelectCard";
 
 function ElectrifiedSetting() {
   // variable : //

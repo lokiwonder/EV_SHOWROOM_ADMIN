@@ -3,7 +3,7 @@ import { Cookies } from "react-cookie";
 
 import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Card, Divider } from "@mui/material";
+import { Card } from "@mui/material";
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -36,21 +36,23 @@ import CountrySelectorCard from "./components/CountrySelectCard";
 
 function Translation() {
   // variable: //
-  const [countryInfo, setCountryInfo] = useState({});
-  const [countryCode, setCountryCode] = useState("");
-  const [showroom, setShowroom] = useState("");
-  const [group, setGroup] = useState("");
-  const [translationLanguage, setTranslationLanguage] = useState("");
-  const [translations, setTranslations] = useState(null);
-  const [translationVersion, setTranslationVersion] = useState(null);
-  const [totalPages, setTotalPages] = useState(0);
   const [untranslationPages, setUntranslationPages] = useState(0);
   const [translationPages, setTranslationPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [translationLanguage, setTranslationLanguage] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const [itemGroup, setItemGroup] = useState("");
-  const [originalItem, setOriginalItem] = useState(null);
+  const [category, setCategory] = useState("");
+  const [vehicle, setVehicle] = useState("");
+
+  const [translationVersion, setTranslationVersion] = useState(null);
   const [translationItem, setTranslationItem] = useState(null);
+  const [originalItem, setOriginalItem] = useState(null);
+  const [translations, setTranslations] = useState(null);
 
   // description:
+  const [countryInfo, setCountryInfo] = useState({});
   const [template1Item, setTemplate1Item] = useState({
     title: "",
     comment: "",
@@ -64,8 +66,8 @@ function Translation() {
 
   // function: //
   const listReset = (translationsItems) => {
-    const t = countTotalPages(showroom, translationsItems.translations);
-    const u = countUntranslationPages(showroom, translationsItems.translations);
+    const t = countTotalPages(category, translationsItems.translations);
+    const u = countUntranslationPages(category, translationsItems.translations);
     setTotalPages(t);
     setUntranslationPages(u);
     setTranslationPages(t - u);
@@ -77,19 +79,21 @@ function Translation() {
     setTranslationItem(null);
   };
 
-  const onShowroomHandler = (e, v) => setShowroom(v.name);
-  const onGroupHandler = (e, v) => setGroup(v.name);
-  const onTranslationLanguageHandler = async (e, v) => {
+  const onTranslationLanguageHandler = (e, v) => {
+    setTranslationLanguage(v.name);
+  };
+  const onCategoryHandler = (e, v) => setCategory(v.name);
+  const onVehicleHandler = async (e, v) => {
+    setVehicle(v.name);
     // description:
     setOriginalItem(null);
     setTranslationItem(null);
     // description:
-    setTranslationLanguage(v.name);
     // description:
     const translationsItems = await getTranslations(
       countryCode,
-      showroom,
-      group,
+      category,
+      vehicle,
       v.name
     );
     listReset(translationsItems);
@@ -114,9 +118,9 @@ function Translation() {
 
   const template1Save = async () => {
     const tmp = {
-      app_type: showroom,
+      app_type: category,
       country: countryCode,
-      group,
+      vehicle,
       language: translationLanguage,
       item_group: itemGroup,
       sequence_number: originalItem.sequence_number,
@@ -140,9 +144,9 @@ function Translation() {
     });
 
     const tmp = {
-      app_type: showroom,
+      app_type: category,
       country: countryCode,
-      group,
+      vehicle,
       language: translationLanguage,
       item_group: itemGroup,
       sequence_number: originalItem.sequence_number,
@@ -159,17 +163,17 @@ function Translation() {
   }, []);
 
   // component:  //
-  function showroomSelectorCard() {
+  function categorySelectorCard() {
     return (
       <Grid item sm={12} lg={3}>
         <Card>
           <MDBox p="16px">
-            <MDTypography variant="b7" color="gray">
+            <MDTypography variant="b7" color="deepgray">
               Category
             </MDTypography>
             <Autocomplete
               color="darkGray"
-              onChange={(event, value) => onShowroomHandler(event, value)}
+              onChange={(event, value) => onCategoryHandler(event, value)}
               options={SHOWROOMS}
               renderInput={(params) => (
                 <FormField
@@ -191,17 +195,11 @@ function Translation() {
       <Grid item sm={12} lg={3}>
         <Card style={{ height: "100%" }}>
           <MDBox p="16px">
-            <MDTypography
-              style={{
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#7b809a",
-              }}
-            >
+            <MDTypography variant="b7" color="deepgray">
               Vehicle
             </MDTypography>
             <Autocomplete
-              onChange={(event, value) => onGroupHandler(event, value)}
+              onChange={(event, value) => onVehicleHandler(event, value)}
               options={TMP_ELECTRIFIED}
               renderInput={(params) => (
                 <FormField
@@ -223,13 +221,7 @@ function Translation() {
       <Grid item sm={12} lg={3}>
         <Card style={{ height: "100%" }}>
           <MDBox p="16px">
-            <MDTypography
-              style={{
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#7b809a",
-              }}
-            >
+            <MDTypography color="deepgray" variant="b7">
               Language
             </MDTypography>
             <Autocomplete
@@ -258,7 +250,7 @@ function Translation() {
         {translations &&
           translations.highlights.map((item) =>
             itemCard(
-              group,
+              vehicle,
               "Highlights",
               item,
               translationLanguage,
@@ -271,7 +263,7 @@ function Translation() {
         {translations &&
           translations.charging.map((item) =>
             itemCard(
-              group,
+              vehicle,
               "Charging",
               item,
               translationLanguage,
@@ -284,7 +276,7 @@ function Translation() {
         {translations &&
           translations.benefits.map((item) =>
             itemCard(
-              group,
+              vehicle,
               "Benefits",
               item,
               translationLanguage,
@@ -303,83 +295,120 @@ function Translation() {
     return (
       <MDBox>
         <Card>
-          <MDBox p={2}>
-            <MDTypography pt={1} variant="h4">
-              {`${showroom} > ${group} > ${itemGroup} #${
-                translationItem.sequence_number + 1
-              }`}
-            </MDTypography>
-          </MDBox>
-          <MDBox p={2}>
-            <MDTypography variant="h6">{originalItem.title}</MDTypography>
-          </MDBox>
-          <MDBox px={2} pb={2}>
-            <MDInput
-              multiline
-              rows={4}
-              fullWidth
-              onChange={(e) => onTemplate1Handler(e, "title")}
-            />
-          </MDBox>
-          <Divider />
-          <MDBox p={2}>
-            <MDTypography variant="h6">{originalItem.comment}</MDTypography>
-          </MDBox>
-          <MDBox px={2} pb={2}>
-            <MDInput
-              multiline
-              rows={4}
-              fullWidth
-              onChange={(e) => onTemplate1Handler(e, "comment")}
-            />
-          </MDBox>
-          <Divider />
-          {originalItem.description !== "" && (
-            <>
-              <MDBox p={2}>
-                <MDTypography variant="h6">
-                  {originalItem.description}
-                </MDTypography>
+          <MDBox p="24px">
+            <MDBox mb="24px">
+              <MDTypography variant="h6">
+                {`${category} > ${vehicle} > ${itemGroup} #${
+                  translationItem.sequence_number + 1
+                }`}
+              </MDTypography>
+            </MDBox>
+            <MDBox mb="24px">
+              <Card style={{ backgroundColor: "#F6F3F2" }}>
+                <MDBox p="16px">
+                  <MDBox mb="12px">
+                    <MDTypography variant="b8" color="black">
+                      {originalItem.title}
+                    </MDTypography>
+                  </MDBox>
+                  <MDBox mb="9px">
+                    <MDInput
+                      p="14px"
+                      style={{
+                        backgroundColor: "#ffffff",
+                        fontSize: "14px",
+                        fontWeight: 400,
+                      }}
+                      multiline
+                      rows={3}
+                      fullWidth
+                      onChange={(e) => onTemplate1Handler(e, "title")}
+                    />
+                  </MDBox>
+                  <MDTypography variant="b4" color="activeRed">
+                    If longer than 45 characters, text may not be shown properly
+                    when saved.
+                  </MDTypography>
+                </MDBox>
+              </Card>
+            </MDBox>
+            <MDBox mb="24px">
+              <Card style={{ backgroundColor: "#F6F3F2" }}>
+                <MDBox p="16px">
+                  <MDBox mb="12px">
+                    <MDTypography variant="b8" color="black">
+                      {originalItem.comment}
+                    </MDTypography>
+                  </MDBox>
+                  <MDBox>
+                    <MDInput
+                      multiline
+                      rows={4}
+                      fullWidth
+                      onChange={(e) => onTemplate1Handler(e, "comment")}
+                      style={{
+                        backgroundColor: "#ffffff",
+                        fontSize: "14px",
+                        fontWeight: 400,
+                      }}
+                    />
+                  </MDBox>
+                </MDBox>
+              </Card>
+            </MDBox>
+            {originalItem.description !== "" && (
+              <MDBox mb="24px">
+                <Card>
+                  <MDBox>
+                    <MDTypography variant="h6">
+                      {originalItem.description}
+                    </MDTypography>
+                  </MDBox>
+                  <MDBox>
+                    <MDInput
+                      multiline
+                      rows={3}
+                      fullWidth
+                      style={{
+                        backgroundColor: "#ffffff",
+                        fontSize: "14px",
+                        fontWeight: 400,
+                      }}
+                      onChange={(e) => onTemplate1Handler(e, "description")}
+                    />
+                  </MDBox>
+                </Card>
               </MDBox>
-              <MDBox px={2} pb={2}>
-                <MDInput
-                  multiline
-                  rows={4}
-                  fullWidth
-                  onChange={(e) => onTemplate1Handler(e, "description")}
-                />
-              </MDBox>
-            </>
-          )}
-          <Divider />
-          <MDBox p={2}>
-            <Grid container spacing={3}>
-              <Grid item sm={12} lg={4}>
-                <MDButton color="blue" fullWidth>
-                  <MDTypography variant="h6" color="white">
-                    PREVIEW ORIGINAL PAGE
-                  </MDTypography>
-                </MDButton>
+            )}
+            <MDBox mt="24px">
+              <Grid container>
+                <Grid px="8px" item sm={12} lg={4}>
+                  <MDButton color="sand" fullWidth>
+                    <MDTypography variant="b7" color="brown">
+                      PREVIEW ORIGINAL PAGE
+                    </MDTypography>
+                  </MDButton>
+                </Grid>
+                <Grid px="8px" item sm={12} lg={4}>
+                  <MDButton color="sand" fullWidth>
+                    <MDTypography variant="b7" color="brown">
+                      PREVIEW TRANSLATED PAGE
+                    </MDTypography>
+                  </MDButton>
+                </Grid>
+                <Grid px="8px" item sm={12} lg={4}>
+                  <MDButton
+                    color="blue"
+                    fullWidth
+                    onClick={() => template1Save()}
+                  >
+                    <MDTypography variant="b7" color="white">
+                      SAVE
+                    </MDTypography>
+                  </MDButton>
+                </Grid>
               </Grid>
-              <Grid item sm={12} lg={4}>
-                <MDButton color="blue" fullWidth>
-                  <MDTypography variant="h6" color="white">
-                    PREVIEW TRANSLATED PAGE
-                  </MDTypography>
-                </MDButton>
-              </Grid>
-              <Grid item sm={12} lg={4}>
-                <MDButton
-                  color="blue"
-                  fullWidth
-                  onClick={() => template1Save()}
-                >
-                  <MDTypography variant="h6" color="white">
-                    SAVE
-                  </MDTypography>
-                </MDButton>
-              </Grid>
-            </Grid>
+            </MDBox>
           </MDBox>
         </Card>
       </MDBox>
@@ -391,70 +420,94 @@ function Translation() {
     return (
       <MDBox>
         <Card>
-          <MDBox p={2}>
-            <MDTypography pt={1} variant="h4">
-              {`${showroom} > ${group} > ${itemGroup} #${
-                translationItem.sequence_number + 1
-              }`}
+          <MDBox p="24px">
+            <MDTypography variant="h6" mb="24px">
+              <span>Translations</span>
+              {` > ${itemGroup} #${translationItem.sequence_number + 1}`}
             </MDTypography>
-          </MDBox>
-          {originalItem.contents.map((content, idx) => (
-            <>
-              <MDBox p={2}>
-                <MDTypography variant="h6">{content.comment}</MDTypography>
-              </MDBox>
-              <MDBox px={2} pb={2}>
-                <MDInput
-                  multiline
-                  rows={4}
-                  fullWidth
-                  onChange={(e) => onTemplate2Handler(e, idx)}
-                />
-              </MDBox>
-              <Divider />
-              {content.description !== "" && (
-                <>
-                  <MDBox p={2}>
-                    <MDTypography variant="h6">
-                      {content.description}
-                    </MDTypography>
+            {originalItem.contents.map((content, idx) => (
+              <MDBox mb="24px">
+                <Card style={{ backgroundColor: "#F6F3F2" }}>
+                  <MDBox p="20px">
+                    <MDBox mb="16px">
+                      <MDTypography variant="b7">
+                        {content.comment}
+                      </MDTypography>
+                    </MDBox>
+                    <MDBox mb="16px">
+                      <MDInput
+                        multiline
+                        fullWidth
+                        style={{
+                          backgroundColor: "#ffffff",
+                          fontSize: "14px",
+                          fontWeight: 400,
+                        }}
+                        onChange={(e) => onTemplate2Handler(e, idx)}
+                      />
+                    </MDBox>
+                    {content.description !== "" && (
+                      <Card style={{ backgroundColor: "#F6F3F2" }}>
+                        <MDBox p="20px">
+                          <MDBox mb="16px">
+                            <MDTypography variant="b7">
+                              {content.description}
+                            </MDTypography>
+                          </MDBox>
+                          <MDBox mb="16px">
+                            <MDInput
+                              multiline
+                              rows={4}
+                              fullWidth
+                              style={{
+                                backgroundColor: "#ffffff",
+                                fontSize: "14px",
+                                fontWeight: 400,
+                              }}
+                            />
+                          </MDBox>
+                        </MDBox>
+                      </Card>
+                    )}
                   </MDBox>
-                  <MDBox px={2} pb={2}>
-                    <MDInput multiline rows={4} fullWidth />
+                </Card>
+              </MDBox>
+            ))}
+            <MDBox mt="24px">
+              <Grid container>
+                <Grid item sm={12} lg={4}>
+                  <MDBox px="8px">
+                    <MDButton color="sand" fullWidth>
+                      <MDTypography variant="b7" color="brown">
+                        PREVIEW ORIGINAL PAGE
+                      </MDTypography>
+                    </MDButton>
                   </MDBox>
-                  <Divider />
-                </>
-              )}
-            </>
-          ))}
-          <MDBox p={2}>
-            <Grid container spacing={3}>
-              <Grid item sm={12} lg={4}>
-                <MDButton color="blue" fullWidth>
-                  <MDTypography variant="h6" color="white">
-                    PREVIEW ORIGINAL PAGE
-                  </MDTypography>
-                </MDButton>
+                </Grid>
+                <Grid item sm={12} lg={4}>
+                  <MDBox px="8px">
+                    <MDButton color="sand" fullWidth>
+                      <MDTypography variant="b7" color="brown">
+                        PREVIEW TRANSLATED PAGE
+                      </MDTypography>
+                    </MDButton>
+                  </MDBox>
+                </Grid>
+                <Grid item sm={12} lg={4}>
+                  <MDBox px="8px">
+                    <MDButton
+                      color="blue"
+                      fullWidth
+                      onClick={() => template2Save()}
+                    >
+                      <MDTypography variant="b7" color="white">
+                        SAVE
+                      </MDTypography>
+                    </MDButton>
+                  </MDBox>
+                </Grid>
               </Grid>
-              <Grid item sm={12} lg={4}>
-                <MDButton color="blue" fullWidth>
-                  <MDTypography variant="h6" color="white">
-                    PREVIEW TRANSLATED PAGE
-                  </MDTypography>
-                </MDButton>
-              </Grid>
-              <Grid item sm={12} lg={4}>
-                <MDButton
-                  color="blue"
-                  fullWidth
-                  onClick={() => template2Save()}
-                >
-                  <MDTypography variant="h6" color="white">
-                    SAVE
-                  </MDTypography>
-                </MDButton>
-              </Grid>
-            </Grid>
+            </MDBox>
           </MDBox>
         </Card>
       </MDBox>
@@ -475,8 +528,8 @@ function Translation() {
           <Grid container spacing={1.5}>
             <CountrySelectorCard />
             {languageSelectorCard()}
-            {showroomSelectorCard()}
-            {vehicleSelectorCard()}
+            {categorySelectorCard()}
+            {category && vehicleSelectorCard()}
           </Grid>
         </MDBox>
 
@@ -488,7 +541,8 @@ function Translation() {
                   variant="body1"
                   color="blue"
                   lineHeight={1}
-                  style={{ verticalAlign: "middle", marginBottom: "24px" }}
+                  mb="24px"
+                  verticalAlign="middle"
                 >
                   Setup Display Vehicle -{" "}
                   <span style={{ color: "#00AAD2" }}>
@@ -604,7 +658,7 @@ function Translation() {
                   </Grid>
                 </Grid>
               </MDBox>
-              {showroom === ELECTRIFIED && electrifiedItemCard()}
+              {category === ELECTRIFIED && electrifiedItemCard()}
             </Card>
           </MDBox>
         )}
