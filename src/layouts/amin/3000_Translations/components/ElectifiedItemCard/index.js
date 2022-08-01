@@ -14,12 +14,15 @@ function itemCard(
   item,
   language,
   country,
+  translations,
   setOriginalItem,
   setTranslationItem,
-  setItemGroup
+  setItemGroup,
+  setTemplate1PopItem,
+  setTemplate1Pop
 ) {
+  // description: translation handler //
   const onEditHandler = async () => {
-    // todo: axio
     const dto = {
       country,
       appType: ELECTRIFIED,
@@ -32,6 +35,32 @@ function itemCard(
     setOriginalItem(result.originalItem);
     setTranslationItem(result.translationItem);
     setItemGroup(menu);
+  };
+
+  // description: preview handler //
+  const onPreviewHandler = () => {
+    if (item.type === "Template 1") {
+      let pageLength = 0;
+      if (menu === "Highlights") pageLength = translations.highlights.length;
+      if (menu === "Charging") pageLength = translations.charging.length;
+      if (menu === "Benefits") pageLength = translations.benefits.length;
+      const popupItem = {
+        title: item.title,
+        comment: item.comment,
+        description: item.description ? item.description : "none",
+        pageClass: menu,
+        seq: item.sequence_number,
+        pageLength,
+        image: item.image,
+        electrified: group,
+      };
+      setTemplate1PopItem(popupItem);
+    }
+    // if (item.type === "Template 2") {
+    // }
+    // if (item.type === "Template 3") {
+    // }
+    setTemplate1Pop(true);
   };
 
   return (
@@ -82,7 +111,11 @@ function itemCard(
             </MDButton>
           </MDBox>
           <MDBox mt="16px">
-            <MDButton style={{ backgroundColor: "#E4DCD3" }} fullWidth>
+            <MDButton
+              style={{ backgroundColor: "#E4DCD3" }}
+              fullWidth
+              onClick={() => onPreviewHandler()}
+            >
               <MDTypography variant="b7" color="brown">
                 PREVIEW
               </MDTypography>

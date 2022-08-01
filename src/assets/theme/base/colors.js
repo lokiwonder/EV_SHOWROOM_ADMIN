@@ -25,12 +25,12 @@ const colors = {
     default: "#EEEEEE",
   },
 
-  darkgray: {
+  darkGray: {
     main: "#1C1B1B",
     default: "#1C1B1B",
   },
 
-  deepgray: {
+  deepGray: {
     main: "#7F7F7E",
     default: "#7F7F7E",
   },

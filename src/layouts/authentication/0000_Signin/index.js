@@ -31,14 +31,16 @@ import { BRAND } from "utils/constants";
 const cookies = new Cookies();
 
 function Basic() {
+  //               variable               //
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [alertFlag, setAlertFlag] = useState(false);
-  // const [loginFlag, setLoginFlag] = useState(false);
 
   const { setDealer } = useDealerStore();
+  //               variable               //
 
+  //               function               //
   const onIdHandelr = (e) => setId(e.target.value);
   const onPwHandelr = (e) => setPassword(e.target.value);
 
@@ -51,7 +53,16 @@ function Basic() {
       navigate("../admin/electrifiedSetting");
     }
   };
+  //               function               //
 
+  //               hook               //
+  useEffect(() => {
+    const accessToken = cookies.get("access_token");
+    if (accessToken) navigate("../admin/dashboards");
+  }, []);
+  //               hook               //
+
+  //               component               //
   const alertContent = () => (
     <MDTypography variant="body2" color="white">
       You entered the wrong{" "}
@@ -77,11 +88,7 @@ function Basic() {
       . Please check your input again.
     </MDTypography>
   );
-
-  useEffect(() => {
-    const accessToken = cookies.get("access_token");
-    if (accessToken) navigate("../admin/setDisplayVehicle");
-  }, []);
+  //               component               //
 
   return (
     <BasicLayout image={bgImage}>
@@ -113,12 +120,11 @@ function Basic() {
           <MDBox component="form" role="form">
             <Grid
               container
-              spacing={1}
               justifyContent="center"
               alignItems="center"
               height="100%"
             >
-              <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+              <Grid item xs={12} md={8} xl={6}>
                 <MDBox mt={2} mb={4}>
                   <MDInput
                     type="text"
@@ -139,12 +145,11 @@ function Basic() {
                   mt={4}
                   mb={4}
                   container
-                  spacing={1}
                   justifyContent="center"
                   alignItems="center"
                   height="100%"
                 >
-                  <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
+                  <Grid item xs={12} md={8} xl={6}>
                     <MDButton
                       variant="gradient"
                       color="hyundai_primary_g"

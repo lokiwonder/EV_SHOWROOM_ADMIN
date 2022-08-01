@@ -76,6 +76,8 @@ MDTypography.propTypes = {
   color: PropTypes.oneOf([
     "blue",
     "darkGray",
+    "deepGray",
+    "dakerGray",
     "gray",
     "black",
     "lightGray",

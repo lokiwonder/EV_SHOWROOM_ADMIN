@@ -9,6 +9,9 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import FormField from "layouts/pages/account/components/FormField";
+import PreTemplate1 from "layouts/preview/template_1";
+// import PreTemplate2 from "layouts/preview/template_2";
+// import PreTemplate3 from "layouts/preview/template_3";
 
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
@@ -59,6 +62,15 @@ function Translation() {
     description: "",
   });
   const [template2Item, setTemplate2Item] = useState(["", "", ""]);
+  // description: template1 preview 관련 (popup flag, popup content) //
+  const [template1Pop, setTemplate1Pop] = useState(false);
+  const [template1PopItem, setTemplate1PopItem] = useState(null);
+  // description: template2 preview 관련 (popup flag, popup content) //
+  // const [template2Pop, setTemplate2Pop] = useState(false);
+  // const [template2PopItem, setTemplate2PopItem] = useState(null);
+  // description: template3 preview 관련 (popup flag, popup content) //
+  // const [template3Pop, setTemplate3Pop] = useState(false);
+  // const [template3PopItem, setTemplate3PopItem] = useState(null);
 
   const cookie = new Cookies();
 
@@ -78,7 +90,6 @@ function Translation() {
     setOriginalItem(null);
     setTranslationItem(null);
   };
-
   const onTranslationLanguageHandler = (e, v) => {
     setTranslationLanguage(v.name);
   };
@@ -97,10 +108,8 @@ function Translation() {
       translationLanguage
     );
 
-    console.log(translationsItems);
     listReset(translationsItems);
   };
-
   // description
   const onTemplate1Handler = (e, position) => {
     const tmp = template1Item;
@@ -110,7 +119,6 @@ function Translation() {
 
     setTemplate1Item(tmp);
   };
-
   // description
   const onTemplate2Handler = (e, index) => {
     const tmp = template2Item;
@@ -158,6 +166,22 @@ function Translation() {
     const translationsItems = await editTranslation(tmp);
     listReset(translationsItems);
     setTemplate2Item(["", "", ""]);
+  };
+
+  // description: preview template1 contents setting //
+  const previewTemplate1 = (item, pageLength) => {
+    const popupItem = {
+      title: item.title,
+      comment: item.comment,
+      description: item.description ? item.description : "none",
+      pageClass: itemGroup,
+      seq: originalItem.sequence_number,
+      pageLength,
+      image: originalItem.image,
+      electrified: vehicle,
+    };
+    setTemplate1PopItem(popupItem);
+    setTemplate1Pop(!template1Pop);
   };
 
   useEffect(() => {
@@ -257,9 +281,12 @@ function Translation() {
               item,
               translationLanguage,
               countryCode,
+              translations,
               setOriginalItem,
               setTranslationItem,
-              setItemGroup
+              setItemGroup,
+              setTemplate1PopItem,
+              setTemplate1Pop
             )
           )}
         {translations &&
@@ -270,9 +297,12 @@ function Translation() {
               item,
               translationLanguage,
               countryCode,
+              translations,
               setOriginalItem,
               setTranslationItem,
-              setItemGroup
+              setItemGroup,
+              setTemplate1PopItem,
+              setTemplate1Pop
             )
           )}
         {translations &&
@@ -283,9 +313,12 @@ function Translation() {
               item,
               translationLanguage,
               countryCode,
+              translations,
               setOriginalItem,
               setTranslationItem,
-              setItemGroup
+              setItemGroup,
+              setTemplate1PopItem,
+              setTemplate1Pop
             )
           )}
       </MDBox>
@@ -385,14 +418,32 @@ function Translation() {
             <MDBox mt="24px">
               <Grid container>
                 <Grid px="8px" item sm={12} lg={4}>
-                  <MDButton color="sand" fullWidth>
+                  <MDButton
+                    color="sand"
+                    fullWidth
+                    onClick={() =>
+                      previewTemplate1(
+                        originalItem,
+                        translations.highlights.length
+                      )
+                    }
+                  >
                     <MDTypography variant="b7" color="brown">
                       PREVIEW ORIGINAL PAGE
                     </MDTypography>
                   </MDButton>
                 </Grid>
                 <Grid px="8px" item sm={12} lg={4}>
-                  <MDButton color="sand" fullWidth>
+                  <MDButton
+                    color="sand"
+                    fullWidth
+                    onClick={() =>
+                      previewTemplate1(
+                        template1Item,
+                        translations.highlights.length
+                      )
+                    }
+                  >
                     <MDTypography variant="b7" color="brown">
                       PREVIEW TRANSLATED PAGE
                     </MDTypography>
@@ -673,6 +724,19 @@ function Translation() {
           translationItem.type === TEMPLATE2 &&
           template2TranslationCard()}
       </MDBox>
+      {template1Pop && (
+        <PreTemplate1
+          title={template1PopItem.title}
+          comment={template1PopItem.comment}
+          description={template1PopItem.description}
+          pageClass={template1PopItem.pageClass}
+          seq={template1PopItem.sequence_number}
+          pageLength={template1PopItem.length}
+          image={template1PopItem.image}
+          electrified={template1PopItem.electrified}
+          setFlag={setTemplate1Pop}
+        />
+      )}
     </DashboardLayout>
   );
 }

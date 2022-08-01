@@ -1,8 +1,8 @@
+import SignIn from "layouts/authentication/0000_Signin";
 import Dashboard from "layouts/amin/1000_Dashboard";
 import SetDisplayVehicle from "layouts/amin/2000_SetDisplayVehicle";
 import Translations from "layouts/amin/3000_Translations";
 import Download from "layouts/amin/4000_Download";
-import SignIn from "layouts/authentication/sign-in/basic";
 
 // @mui icons
 import DirectionsCarRoundedIcon from "@mui/icons-material/DirectionsCarRounded";

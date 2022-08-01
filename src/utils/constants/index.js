@@ -196,3 +196,5 @@ export const TEMPLATE3 = "Template 3";
 
 export const DOWNLOAD_WINDOWS_TEXT = "Desktop app for Windows";
 export const DOWNLOAD_MAC_TEXT = "Desktop app for Mac";
+
+export const UNDEFINED = "UNDEFINED";
